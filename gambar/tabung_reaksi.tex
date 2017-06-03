@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{tikz}
+
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{10pt}
+
+%\usepackage{relsize}
+\tikzset{fontscale/.style = {font=\relsize{#1}}}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathreplacing}
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position #1 with {\arrow{triangle 45}}},postaction={decorate}}}
+
+\begin{document}
+    \begin{tikzpicture}
+        \fill[color=red!80] (-1,-4) arc (180:0:1 and .2) -- (1,-5) arc (0:-180:1);
+        \fill[color=red] (0,-4) ellipse (1 and .2);%Not necessary, it is there if the opacity is changed or a solution deleted ;)
+        \fill[color=red!35] (-1,-2) arc (180:0:1 and .2) -- (1,-4) arc (0:-180:1 and .2);
+        \fill[color=red!50] (0,-2) ellipse (1 and .2);
+        \foreach \y/\x in {-5/1,-4/2,-3/3,-2/4}{%
+            \draw (-0.2,\y) -- (0.2,\y) node[right](\x){\x};
+            \foreach \z in {0.2,0.4,0.6,0.8}
+               \draw ($(-0.1,\z) + (0,\y)$) -- ($(0.1,\z)+(0,\y)$);
+        };
+        \draw[thick] (1,0) -- (1,-5) arc (0:-180:1) -- (-1,0);
+        \draw[thick] (0,0) ellipse (1 and .2);
+    \end{tikzpicture}
+\end{document}
